@@ -14,15 +14,23 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   "$<INSTALL_INTERFACE:include>"
 )
 
-#target_link_libraries(${PROJECT_NAME}
-#  ${rclcpp_LIBRARIES})
+add_executable(testing
+  src/test.cpp)
+target_link_libraries(testing
+  ${PROJECT_NAME})
 
-#install(TARGETS ${PROJECT_NAME}
-#   DESTINATION lib/${PROJECT_NAME})
+ament_export_include_directories(include)
 
-#install(DIRECTORY
-#   yaml DESTINATION share/${PROJECT_NAME}/
-#)
+install(TARGETS 
+  ${PROJECT_NAME}
+  testing
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY include/${PROJECT_NAME}/
+	DESTINATION include/${PROJECT_NAME}/
+	FILES_MATCHING PATTERN "*.h*"
+	PATTERN ".svn" EXCLUDE)
  
 ament_package()
 
