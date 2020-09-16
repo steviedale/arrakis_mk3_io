@@ -2,14 +2,13 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "arrakis_mk3_io/f75111.h"
-#include<stdbool.h>
+#include "io_controller/f75111.h"
+#include <stdbool.h>
 
 bool F75111_Init()
 {
 	if(PCI_AutoDetect())
 	{
-		printf("bAddress: %x\n", m_F75111.bAddress);
 		if(SMBus_CheckDevice(m_F75111.bAddress))
 		{
 

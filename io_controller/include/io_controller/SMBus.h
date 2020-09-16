@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 //#include "../stdafx.h"
-#include<stdbool.h>
+#include <stdbool.h>
 typedef unsigned char BYTE;
 typedef unsigned short WORD;
 typedef unsigned long DWORD;

@@ -1,8 +1,8 @@
 // SMBus.cpp: implementation of the SMBus class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "arrakis_mk3_io/SMBus.h"
-#include "sys/io.h"
+#include "io_controller/SMBus.h"
+#include <sys/io.h>
 
 //////////////////////////////////////////////////////////////////////
 WORD m_SMBusMapIoAddr;
@@ -544,15 +544,15 @@ bool Get_Apollo_Lake_SOC_SMBusIoAddr(DWORD dwIOAddr)
 
 	dwResult = 	PCI_Read(2);
 
-	printf("Apollo_Lake_SOC SMBus Host Configure = 0x%4X\n",dwResult );
+	//printf("Apollo_Lake_SOC SMBus Host Configure = 0x%4X\n",dwResult );
 
 	if ( dwResult & Apollo_Lake_SOC_SMBUS_HOST_HST_EN )
 	{
-		printf("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host Enable!\n");
+		//printf("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host Enable!\n");
 	}
 	else
 	{
-		printf("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host Disable!\n");
+		//printf("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host Disable!\n");
 
 		return false;
 	}
@@ -561,7 +561,7 @@ bool Get_Apollo_Lake_SOC_SMBusIoAddr(DWORD dwIOAddr)
 
 	m_SMBusMapIoAddr = 	(WORD) PCI_Read(4) & 0xFFF0 ;
 
-	printf("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host I/O Base = 0x%4X\n",m_SMBusMapIoAddr );
+	//printf("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host I/O Base = 0x%4X\n",m_SMBusMapIoAddr );
 
 	return true;
 }
@@ -667,7 +667,7 @@ bool Get_VX900_SMBusIoAddr(DWORD dwIOAddr) //Add for VX900 SMBus Controller IOAd
 void SMBusIoWrite(BYTE byteOffset,BYTE byteData)
 {
 	//SetPortVal(m_SMBusMapIoAddr + byteOffset, byteData,1);
-	printf("byteData is %x\nAddress: %x\n", byteData, m_SMBusMapIoAddr + byteOffset);
+	//printf("byteData is %x\nAddress: %x\n", byteData, m_SMBusMapIoAddr + byteOffset);
 	outb(byteData,m_SMBusMapIoAddr + byteOffset);
 	usleep(10);
 }
@@ -720,7 +720,7 @@ int SMBus_Wait ()
 
 		if ( dwValue & SMBHSTSTS_INTR )
 		{
-			printf("SMBus Action Completion! %x\n",dwValue);
+			//printf("SMBus Action Completion! %x\n",dwValue);
 			return SMBUS_OK;
 		}
 

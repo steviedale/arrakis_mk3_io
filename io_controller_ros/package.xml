@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>io_controller_ros</name>
+  <version>0.0.0</version>
+  <description>This packages provides an interface to the Arrakis MK3 I/O</description>
+
+  <maintainer email="steven.dale@swri.org">Stevie Dale</maintainer>
+
+  <license>Apache 2.0</license>
+
+  <depend>io_controller</depend>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+

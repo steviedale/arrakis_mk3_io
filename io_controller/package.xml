@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>arrakis_mk3_io</name>
+  <name>io_controller</name>
   <version>0.0.0</version>
   <description>This packages provides an interface to the Arrakis MK3 I/O</description>
 
