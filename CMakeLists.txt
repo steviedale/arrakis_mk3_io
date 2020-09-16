@@ -16,6 +16,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 add_executable(testing
   src/test.cpp)
+  
 target_link_libraries(testing
   ${PROJECT_NAME})
 

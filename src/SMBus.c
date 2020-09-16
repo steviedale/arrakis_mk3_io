@@ -24,6 +24,7 @@ DWORD PCI_Read(int size_t)
 void PCI_Write(DWORD dwDataVal,int size_t)
 {
 	//SetPortVal(PCI_CONFIG_ADDR, dwDataVal,size_t);
+	iopl(3);
 	outl(dwDataVal,PCI_CONFIG_ADDR);
 	usleep(10);
 }
@@ -543,15 +544,15 @@ bool Get_Apollo_Lake_SOC_SMBusIoAddr(DWORD dwIOAddr)
 
 	dwResult = 	PCI_Read(2);
 
-	//AfxMessageBox ("Apollo_Lake_SOC SMBus Host Configure = 0x%4X\n",dwResult );
+	printf("Apollo_Lake_SOC SMBus Host Configure = 0x%4X\n",dwResult );
 
 	if ( dwResult & Apollo_Lake_SOC_SMBUS_HOST_HST_EN )
 	{
-		//AfxMessageBox ("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host Enable!\n");
+		printf("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host Enable!\n");
 	}
 	else
 	{
-		//AfxMessageBox ("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host Disable!\n");
+		printf("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host Disable!\n");
 
 		return false;
 	}
@@ -560,7 +561,7 @@ bool Get_Apollo_Lake_SOC_SMBusIoAddr(DWORD dwIOAddr)
 
 	m_SMBusMapIoAddr = 	(WORD) PCI_Read(4) & 0xFFF0 ;
 
-	//AfxMessageBox ("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host I/O Base = 0x%4X\n",m_SMBusMapIoAddr );
+	printf("AutoDetect_IOBase : Intel Apollo_Lake_SOC SMBus Host I/O Base = 0x%4X\n",m_SMBusMapIoAddr );
 
 	return true;
 }
@@ -666,7 +667,7 @@ bool Get_VX900_SMBusIoAddr(DWORD dwIOAddr) //Add for VX900 SMBus Controller IOAd
 void SMBusIoWrite(BYTE byteOffset,BYTE byteData)
 {
 	//SetPortVal(m_SMBusMapIoAddr + byteOffset, byteData,1);
-	//printf("INbytedata is %x\n",byteData);
+	printf("byteData is %x\nAddress: %x\n", byteData, m_SMBusMapIoAddr + byteOffset);
 	outb(byteData,m_SMBusMapIoAddr + byteOffset);
 	usleep(10);
 }
@@ -719,25 +720,25 @@ int SMBus_Wait ()
 
 		if ( dwValue & SMBHSTSTS_INTR )
 		{
-			//printf("SMBus Action Completion! %x\n",dwValue);
+			printf("SMBus Action Completion! %x\n",dwValue);
 			return SMBUS_OK;
 		}
 
 		if ( dwValue & SMBHSTSTS_FAILED )
 		{
-//			printf("SMBus Action FAILED! %x\n",dwValue);
+  			printf("SMBus Action FAILED! %x\n",dwValue);
 			return SMBHSTSTS_FAILED;
 		}
 
 		if (dwValue & SMBHSTSTS_COLLISION)
 		{
-//			printf("SMBus Action COLLISION! %x\n",dwValue);
+  			printf("SMBus Action COLLISION! %x\n",dwValue);
 			return SMBHSTSTS_COLLISION;
 		}
 
 		if (dwValue & SMBHSTSTS_ERROR)
 		{
-//			printf("SMBus Action ERROR! %x\n",dwValue);
+  			printf("SMBus Action ERROR! %x\n",dwValue);
 			return SMBHSTSTS_ERROR;
 		}
 	}
@@ -812,3 +813,4 @@ int SMBus_ReadByte (BYTE byteSlave,BYTE pCmd,BYTE *pByte)
 
 	return ret;
 }
+////

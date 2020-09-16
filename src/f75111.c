@@ -9,6 +9,7 @@ bool F75111_Init()
 {
 	if(PCI_AutoDetect())
 	{
+		printf("bAddress: %x\n", m_F75111.bAddress);
 		if(SMBus_CheckDevice(m_F75111.bAddress))
 		{
 
