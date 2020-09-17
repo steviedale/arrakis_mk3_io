@@ -16,9 +16,15 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 ament_export_include_directories(include)
 
+message(WARNING "START")
+message(WARNING "${CMAKE_INSTALL_PREFIX}")
+message(WARNING "END")
+
 install(TARGETS 
   ${PROJECT_NAME}
-  DESTINATION lib/${PROJECT_NAME}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
 
 install(DIRECTORY include/${PROJECT_NAME}/
