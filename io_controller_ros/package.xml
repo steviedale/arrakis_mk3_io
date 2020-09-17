@@ -2,13 +2,15 @@
 <package format="3">
   <name>io_controller_ros</name>
   <version>0.0.0</version>
-  <description>This packages provides an interface to the Arrakis MK3 I/O</description>
+  <description>This packages provides a ros service node that toggles power to the Arrakis MK3 I/O pins</description>
 
   <maintainer email="steven.dale@swri.org">Stevie Dale</maintainer>
 
   <license>Apache 2.0</license>
 
+  <depend>rclcpp</depend>
   <depend>io_controller</depend>
+  <depend>io_controller_msgs</depend>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
