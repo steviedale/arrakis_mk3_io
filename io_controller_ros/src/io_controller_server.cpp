@@ -13,7 +13,7 @@ IOControllerServer::IOControllerServer(std::shared_ptr<rclcpp::Node> node)
 void IOControllerServer::cb(std::shared_ptr<io_controller_msgs::srv::SetPort::Request> request, std::shared_ptr<io_controller_msgs::srv::SetPort::Response> response)
 {
   RCLCPP_WARN(rclcpp::get_logger("rclcpp"), "Request received");
-  io_controller_.setPort(request->port_num, request->enable);
+  //io_controller_.setPort(request->port_num, request->enable);
 }
 
 

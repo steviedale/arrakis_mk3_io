@@ -31,8 +31,11 @@ install(TARGETS
 
 install(DIRECTORY include/${PROJECT_NAME}/
 	DESTINATION include/${PROJECT_NAME}/
-	FILES_MATCHING PATTERN "*.h*"
-	PATTERN ".svn" EXCLUDE
+)
+
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
 )
 
 ament_package()
