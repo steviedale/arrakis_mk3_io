@@ -8,9 +8,8 @@ find_package(io_controller_msgs REQUIRED)
 find_package(io_controller REQUIRED)
 
 add_executable(${PROJECT_NAME}_node
-  src/io_controller_node.cpp
+  src/io_controller_server.cpp
 )
-
 target_link_libraries(${PROJECT_NAME}_node
   ${rclcpp_LIBRARIES}
   ${io_controller_msgs_LIBRARIES}
@@ -22,7 +21,6 @@ target_include_directories(${PROJECT_NAME}_node PUBLIC
   ${rclcpp_INCLUDE_DIRS}
   ${io_controller_msgs_INCLUDE_DIRS}
 )
-
 
 ament_export_include_directories(include)
 
