@@ -3,11 +3,11 @@
 #include <memory>
 
 
-IOControllerServer::IOControllerServer(std::shared_ptr<rclcpp::Node> node)
+IOControllerServer::IOControllerServer()
+: Node("io_controller_node")
 {
-  rclcpp::Service<io_controller_msgs::srv::SetPort>::SharedPtr service = node->create_service<io_controller_msgs::srv::SetPort>(
-        "io_controller_service", std::bind(&IOControllerServer::cb, this, std::placeholders::_1, std::placeholders::_2));
-
+  service_ = this->create_service<io_controller_msgs::srv::SetPort>(
+    "io_controller_service", std::bind(&IOControllerServer::cb, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 void IOControllerServer::cb(std::shared_ptr<io_controller_msgs::srv::SetPort::Request> request, std::shared_ptr<io_controller_msgs::srv::SetPort::Response> response)
@@ -21,9 +21,7 @@ int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
 
-  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("io_controller_node");
-
-  IOControllerServer server(node);
+  auto node = std::make_shared<IOControllerServer>();
 
   RCLCPP_WARN(rclcpp::get_logger("rclcpp"), "Spinin'");
 

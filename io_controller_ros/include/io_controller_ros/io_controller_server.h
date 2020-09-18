@@ -3,11 +3,12 @@
 #include <rclcpp/rclcpp.hpp>
 
 
-class IOControllerServer
+class IOControllerServer : public rclcpp::Node
 {
 public:
-  IOControllerServer(std::shared_ptr<rclcpp::Node> node);
+  IOControllerServer();
   void cb(std::shared_ptr<io_controller_msgs::srv::SetPort::Request> request, std::shared_ptr<io_controller_msgs::srv::SetPort::Response> response);
 private:
+  rclcpp::Service<io_controller_msgs::srv::SetPort>::SharedPtr service_;
   IOController io_controller_;
 };
