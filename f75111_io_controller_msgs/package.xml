@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>io_controller_msgs</name>
+  <name>f75111_io_controller_msgs</name>
   <version>0.0.0</version>
-  <description>This packages provides ros service message definitions for I/O control</description>
+  <description>This packages provides ros service message definitions for control of the F75111 GPIO pins.</description>
 
   <maintainer email="steven.dale@swri.org">Stevie Dale</maintainer>
 

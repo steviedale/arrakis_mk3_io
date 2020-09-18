@@ -18,11 +18,11 @@ IOController::IOController()
   }
 }
 
-void IOController::setPort(int port_num, bool enable)
+void IOController::setPin(int pin_num, bool enable)
 {
   BYTE address;
   if (enable) {
-    switch (port_num) {
+    switch (pin_num) {
         case 0:
           address = 0x01;
           break;
@@ -36,11 +36,11 @@ void IOController::setPort(int port_num, bool enable)
           address = 0x08;
           break;
         default:
-          throw std::runtime_error("Invalid port_num: %d. Must be 0-3.");
+          throw std::runtime_error("Invalid pin_num: %d. Must be 0-3.");
     }
   }
   else {
-    switch (port_num) {
+    switch (pin_num) {
         case 0:
           address = 0x10;
           break;
@@ -54,7 +54,7 @@ void IOController::setPort(int port_num, bool enable)
           address = 0x80;
           break;
         default:
-          throw std::runtime_error("Invalid port_num: %d. Must be 0-3.");
+          throw std::runtime_error("Invalid pin_num: %d. Must be 0-3.");
     }
   }
   F75111_SetDigitalOutput(address);

@@ -2,5 +2,5 @@
 class IOController {
 public:
   IOController();
-  void setPort(int port_num, bool enable);
+  void setPin(int pin_num, bool enable);
 };

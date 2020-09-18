@@ -1,4 +1,4 @@
-#include "io_controller/SMBus.h"
+#include "io_controller/smbus.h"
 
 //--------------------------------------------------------------------------------------------------------
 #define F75111_INTERNAL_ADDR			0x9C 	//	OnBoard  F75111 Chipset

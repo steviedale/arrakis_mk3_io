@@ -1,7 +1,7 @@
 // SMBus.cpp: implementation of the SMBus class.
 //
 //////////////////////////////////////////////////////////////////////
-#include "io_controller/SMBus.h"
+#include "io_controller/smbus.h"
 #include <sys/io.h>
 
 //////////////////////////////////////////////////////////////////////
@@ -24,7 +24,6 @@ DWORD PCI_Read(int size_t)
 void PCI_Write(DWORD dwDataVal,int size_t)
 {
 	//SetPortVal(PCI_CONFIG_ADDR, dwDataVal,size_t);
-	iopl(3);
 	outl(dwDataVal,PCI_CONFIG_ADDR);
 	usleep(10);
 }
@@ -32,24 +31,19 @@ void PCI_Write(DWORD dwDataVal,int size_t)
 bool PCI_AutoDetect()
 {
 	devid =0 ;
-//CString tmp;
     int PCI_Bus = 0;
     int PCI_Device = 0;
     int PCI_Function = 0;
 	for (PCI_Bus = 0;PCI_Bus<5;PCI_Bus++)
 	{
-
 		for (PCI_Device = 0;PCI_Device<32;PCI_Device++)
 		{
-
 			for(PCI_Function = 0; PCI_Function<8 ; PCI_Function++ )
 			{
-
 				DWORD dwResult;
 				DWORD dwIOAddr = 0x80000000 + PCI_Bus*0x10000 + PCI_Device*0x800 + PCI_Function*0x100;
 				PCI_Write(dwIOAddr,4);
 				dwResult = PCI_Read(4);
-
 
 				if ((( dwResult & 0xFFFF) == VIA_VT8237_BUS_CTRL_VENDOR_ID )  &&
 					(( dwResult >> 16 )   == VIA_VT8237_BUS_CTRL_DEVICE_ID ))
