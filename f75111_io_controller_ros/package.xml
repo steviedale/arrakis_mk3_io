@@ -9,7 +9,7 @@
 
   <depend>rclcpp</depend>
   <depend>f75111_io_controller</depend>
-  <depend>f75111_io_controller_msgs/depend>
+  <depend>f75111_io_controller_msgs</depend>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

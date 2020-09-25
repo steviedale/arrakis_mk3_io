@@ -7,7 +7,7 @@ include(cmake/f75111_io_controller_macros.cmake)
 find_package(ament_cmake REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
-  src/io_controller.cpp
+  src/f75111_io_controller.cpp
   src/f75111.c
   src/smbus.c
 )

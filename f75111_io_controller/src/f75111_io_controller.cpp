@@ -1,16 +1,16 @@
 #if defined (__cplusplus)
 extern "C" {
 #endif
-#include "io_controller/f75111.h"
+#include "f75111_io_controller/f75111.h"
 #if defined (__cplusplus)
 }
 #endif
 
-#include "io_controller/io_controller.h"
+#include "f75111_io_controller/f75111_io_controller.h"
 #include <stdexcept>
 
 
-IOController::IOController()
+F75111IOController::F75111IOController()
 {
   m_F75111.bAddress = F75111_INTERNAL_ADDR;
   if (!F75111_Init()) {
@@ -18,7 +18,7 @@ IOController::IOController()
   }
 }
 
-void IOController::setPin(int pin_num, bool enable)
+void F75111IOController::setPin(int pin_num, bool enable)
 {
   BYTE address;
   if (enable) {
